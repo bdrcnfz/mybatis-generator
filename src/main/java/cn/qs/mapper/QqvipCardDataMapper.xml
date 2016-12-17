@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.qs.mapper.QqvipCardDataMapper" >
+  <resultMap id="BaseResultMap" type="cn.qs.model.QqvipCardData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="giftset_id" property="giftsetId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="bonus_value" property="bonusValue" jdbcType="INTEGER" />
+    <result column="use_start_time" property="useStartTime" jdbcType="VARCHAR" />
+    <result column="use_end_time" property="useEndTime" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="use_limit" property="useLimit" jdbcType="VARCHAR" />
+    <result column="fission_id" property="fissionId" jdbcType="VARCHAR" />
+    <result column="exchange_url" property="exchangeUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_timestamp" property="timestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, giftset_id, name, bonus_value, use_start_time, use_end_time, description, use_limit, 
+    fission_id, exchange_url, create_time, _timestamp
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.qs.model.QqvipCardDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qqvip_card_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qqvip_card_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qqvip_card_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.qs.model.QqvipCardDataExample" >
+    delete from qqvip_card_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.qs.model.QqvipCardData" >
+    insert into qqvip_card_data (id, giftset_id, name, 
+      bonus_value, use_start_time, use_end_time, 
+      description, use_limit, fission_id, 
+      exchange_url, create_time, _timestamp
+      )
+    values (#{id,jdbcType=INTEGER}, #{giftsetId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{bonusValue,jdbcType=INTEGER}, #{useStartTime,jdbcType=VARCHAR}, #{useEndTime,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{useLimit,jdbcType=VARCHAR}, #{fissionId,jdbcType=VARCHAR}, 
+      #{exchangeUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{timestamp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.qs.model.QqvipCardData" >
+    insert into qqvip_card_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="giftsetId != null" >
+        giftset_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="bonusValue != null" >
+        bonus_value,
+      </if>
+      <if test="useStartTime != null" >
+        use_start_time,
+      </if>
+      <if test="useEndTime != null" >
+        use_end_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="useLimit != null" >
+        use_limit,
+      </if>
+      <if test="fissionId != null" >
+        fission_id,
+      </if>
+      <if test="exchangeUrl != null" >
+        exchange_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="timestamp != null" >
+        _timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="giftsetId != null" >
+        #{giftsetId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusValue != null" >
+        #{bonusValue,jdbcType=INTEGER},
+      </if>
+      <if test="useStartTime != null" >
+        #{useStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="useEndTime != null" >
+        #{useEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="useLimit != null" >
+        #{useLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="fissionId != null" >
+        #{fissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeUrl != null" >
+        #{exchangeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.qs.model.QqvipCardDataExample" resultType="java.lang.Integer" >
+    select count(*) from qqvip_card_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update qqvip_card_data
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftsetId != null" >
+        giftset_id = #{record.giftsetId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bonusValue != null" >
+        bonus_value = #{record.bonusValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.useStartTime != null" >
+        use_start_time = #{record.useStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useEndTime != null" >
+        use_end_time = #{record.useEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useLimit != null" >
+        use_limit = #{record.useLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fissionId != null" >
+        fission_id = #{record.fissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchangeUrl != null" >
+        exchange_url = #{record.exchangeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timestamp != null" >
+        _timestamp = #{record.timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update qqvip_card_data
+    set id = #{record.id,jdbcType=INTEGER},
+      giftset_id = #{record.giftsetId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      bonus_value = #{record.bonusValue,jdbcType=INTEGER},
+      use_start_time = #{record.useStartTime,jdbcType=VARCHAR},
+      use_end_time = #{record.useEndTime,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      use_limit = #{record.useLimit,jdbcType=VARCHAR},
+      fission_id = #{record.fissionId,jdbcType=VARCHAR},
+      exchange_url = #{record.exchangeUrl,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _timestamp = #{record.timestamp,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.qs.model.QqvipCardData" >
+    update qqvip_card_data
+    <set >
+      <if test="giftsetId != null" >
+        giftset_id = #{giftsetId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bonusValue != null" >
+        bonus_value = #{bonusValue,jdbcType=INTEGER},
+      </if>
+      <if test="useStartTime != null" >
+        use_start_time = #{useStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="useEndTime != null" >
+        use_end_time = #{useEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="useLimit != null" >
+        use_limit = #{useLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="fissionId != null" >
+        fission_id = #{fissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeUrl != null" >
+        exchange_url = #{exchangeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timestamp != null" >
+        _timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.qs.model.QqvipCardData" >
+    update qqvip_card_data
+    set giftset_id = #{giftsetId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      bonus_value = #{bonusValue,jdbcType=INTEGER},
+      use_start_time = #{useStartTime,jdbcType=VARCHAR},
+      use_end_time = #{useEndTime,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      use_limit = #{useLimit,jdbcType=VARCHAR},
+      fission_id = #{fissionId,jdbcType=VARCHAR},
+      exchange_url = #{exchangeUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      _timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
